@@ -1,4 +1,4 @@
-resource "aws_security_group" "allow_ssh_terraform" {
+resource "aws_security_group" "venu" {
     name        = "allow_sshh" #allow_ssh is already there in my account
     description = "Allow port number 22 for SSH access"
 
@@ -19,18 +19,18 @@ resource "aws_security_group" "allow_ssh_terraform" {
         ipv6_cidr_blocks = ["::/0"]
     }
 
-    tags= {
-          Name = "venntf"
+    tags = {
+        Name = "venu"
     }
 }
 
 resource "aws_instance"  "terraform"{
-       ami_id= "ami-09c813fb71547fc4f"
+       ami = "ami-09c813fb71547fc4f"
        instance_type="t3.micro"
-       vpc_security_group_ids=[aws_security_group.allow_ssh_terraform.id]
+       vpc_security_group_ids=[aws_security_group.venu.id]
 
-       tags {
+       tags = {
 
-        Name= "terraform"
+         Name = "terraform"
        }
  }
