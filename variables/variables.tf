@@ -1,11 +1,11 @@
 variable "ami" {
-        type= "string"
+        type= string
         default= "ami-09c813fb71547fc4f"
         description= "this ami id of devops-practice image is redhat"
 }
 
 variable "instance_type"{
-        type= "string"
+        type=  string
         default= "t3.micro"
         description= "this is the type of the server"
 
@@ -44,10 +44,10 @@ variable "to_port"{
 
 variable "protocol"{
     default = "tcp"
-    type = "string"
+    type = string
 }
 
 variable "venu_cidr"{
-    type = list[string]
+    type = list(string)
     default =["0.0.0.0/0"]
 }

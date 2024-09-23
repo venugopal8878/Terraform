@@ -3,13 +3,13 @@
 resource "aws_instance" "variableterraform"{
         ami = var.ami
         instance_type = var.instance_type
-        vpc_security_group_id = [aws_security_group.venu.id]
+        vpc_security_group_ids = [aws_security_group.venu.id]
         tags = var.tags
 }
 
 
 resource "aws_security_group" "venu"{
-     name= var.sg_mame
+     name= var.sg_name
      description= var.sg_description
 
      #usually we allow all form the outbound traffic
@@ -24,7 +24,7 @@ resource "aws_security_group" "venu"{
         
      }
 
-     igress {
+     ingress {
         from_port= var.from_port
         to_port= var.to_port
         protocol = var.protocol
