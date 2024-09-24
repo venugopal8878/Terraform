@@ -19,9 +19,13 @@ resource "aws_security_group" "venu" {
         ipv6_cidr_blocks = ["::/0"]
     }
 
-    tags = {
-        Name = "venu"
-    }
+    tags = merge(
+        var.common_tags,
+        {
+            Name = "venu"  #for specifice block we can give 
+        }
+        
+    )
 }
 
 resource "aws_instance"  "terraform"{
@@ -30,8 +34,9 @@ resource "aws_instance"  "terraform"{
        instance_type=var.environment == "prod" ? "t3.small" : "t3.micro"
        vpc_security_group_ids=[aws_security_group.venu.id]
 
-       tags = {
-
-         Name = var.instance_names[count.index]
+       tags = merge (
+        var.common_tags,{
+            Name = var.instance_names[count.index]  
        }
- }
+       )
+    }
